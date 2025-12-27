@@ -1,0 +1,20 @@
+{
+  "name": "velog-total-views",
+  "version": "1.0.0",
+  "description": "Velog 총 조회수 자동 수집 도구",
+  "type": "module",
+  "main": "total-views.mjs",
+  "scripts": {
+    "start": "node total-views.mjs"
+  },
+  "keywords": [
+    "velog",
+    "statistics",
+    "views",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {}
+}
+
