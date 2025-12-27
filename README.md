@@ -120,6 +120,8 @@ Velog에 로그인한 상태에서 브라우저의 개발자 도구를 사용해
    - `cookie:` 헤더 찾기
    - `cookie:` 다음에 있는 **전체 값을 복사** (전체 한 줄)
 
+   ![쿠키 복사 방법 가이드](asset/image.png)
+
    예시:
    ```
    cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...; refresh_token=eyJ...; velog=...; ...
