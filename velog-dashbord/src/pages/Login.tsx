@@ -78,7 +78,7 @@ function Login({ onLogin }: LoginProps) {
     <div className="login-container">
       <div className="login-card">
         <div className="login-header">
-          <h1>Velog Analytics</h1>
+          <h1>velog-total-views-tracker</h1>
           <p>Velog 통계를 한눈에 확인하세요</p>
         </div>
 
