@@ -1,7 +1,5 @@
-// 개발 환경에서는 프록시 사용, 프로덕션에서는 직접 API 호출
-const ENDPOINT = import.meta.env.DEV 
-  ? "/api/velog"
-  : "https://v2cdn.velog.io/graphql";
+// Vercel 배포 시 프록시 사용 (개발/프로덕션 모두)
+const ENDPOINT = "/api/velog";
 
 const POSTS_QUERY = `
 query Posts($cursor: ID, $username: String, $temp_only: Boolean, $tag: String, $limit: Int) {
@@ -85,23 +83,13 @@ function buildCookieHeader(accessToken: string, refreshToken?: string): string {
 async function gql(cookie: string, bodyObj: any) {
   const cleanCookie = sanitizeCookie(cookie);
   
-  // 개발 환경(프록시 사용)과 프로덕션 환경(직접 호출) 구분
+  // 프록시를 통해 요청 (개발/프로덕션 모두)
+  // 브라우저에서 cookie 헤더를 직접 설정할 수 없으므로 커스텀 헤더 사용
   const headers: Record<string, string> = {
     "content-type": "application/json",
     "accept": "application/json",
+    "x-velog-cookie": cleanCookie,
   };
-
-  if (import.meta.env.DEV) {
-    // 개발 환경: 프록시를 통해 요청 (커스텀 헤더로 cookie 전달)
-    // 브라우저에서 cookie 헤더를 직접 설정할 수 없으므로 커스텀 헤더 사용
-    headers["x-velog-cookie"] = cleanCookie;
-  } else {
-    // 프로덕션 환경: 직접 API 호출 (서버 환경에서는 cookie 설정 가능)
-    headers["origin"] = "https://velog.io";
-    headers["referer"] = "https://velog.io/";
-    headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36";
-    headers["cookie"] = cleanCookie;
-  }
   
   const res = await fetch(ENDPOINT, {
     method: "POST",

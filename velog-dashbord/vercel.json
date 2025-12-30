@@ -5,6 +5,10 @@
     {
       "source": "/api/velog",
       "destination": "/api/proxy"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
