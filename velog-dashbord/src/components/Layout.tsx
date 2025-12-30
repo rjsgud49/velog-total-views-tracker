@@ -24,7 +24,7 @@ function Layout({ children }: LayoutProps) {
       <nav className="navbar">
         <div className="nav-container">
           <div className="nav-logo">
-            <span className="logo-text">Velog Analytics</span>
+            <span className="logo-text">velog-total-views-tracker</span>
           </div>
           <div className="nav-right">
             <span className="nav-username">@{username}</span>
